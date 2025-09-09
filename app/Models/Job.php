@@ -48,4 +48,9 @@ class Job extends Model
     {
         return $this->belongsTo(Employee::class);
     }
+
+    public function bills()
+{
+    return $this->hasMany(Bill::class);
+}
 }

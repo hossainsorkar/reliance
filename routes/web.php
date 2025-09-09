@@ -5,13 +5,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\PermissionsController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BillController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\TerminalsController;
 use App\Http\Controllers\ExpenseFieldsController;
 use App\Http\Controllers\PartiesListController;
 use App\Http\Controllers\AddPartyController;
-use App\Http\Controllers\BillRegisterController;
-use App\Http\Controllers\BillStatementController;
 use App\Http\Controllers\BankListController;
 use App\Http\Controllers\AccountsListController;
 use App\Http\Controllers\ChartOfAccountsController;
@@ -100,9 +99,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('jobs', JobController::class);
     Route::patch('jobs/{job}/toggle', [JobController::class, 'toggleStatus'])->name('jobs.toggle');
 
+
+    // ✅ Bills Routes
+
+Route::prefix('bills')->name('bills.')->group(function () {
+    Route::get('register', [BillController::class, 'register'])->name('register');
+    Route::get('statement', [BillController::class, 'statement'])->name('statement');
+    Route::get('{bill}', [BillController::class, 'show'])->name('show'); // <-- needed for bills.show
+    Route::patch('toggle/{bill}', [BillController::class, 'toggleStatus'])->name('toggleStatus');
+});
+
     // Other Modules
-    Route::resource('bill-register', BillRegisterController::class);
-    Route::resource('bill-statement', BillStatementController::class);
     Route::resource('bank-list', BankListController::class);
     Route::resource('accounts-list', AccountsListController::class);
     Route::resource('chart-of-accounts', ChartOfAccountsController::class);

@@ -132,12 +132,12 @@ return [
             'submenu' => [
                 [
                     'text' => 'Bill Register',
-                    'url'  => '/bill-register',
+                    'url'  => 'bills/register',
                     'icon' => 'fas fa-clipboard-list',
                 ],
                 [
                     'text' => 'Bill Statement',
-                    'url'  => '/bill-statement',
+                    'url'  => 'bills/statement',
                     'icon' => 'fas fa-file-alt',
                 ],
             ],
