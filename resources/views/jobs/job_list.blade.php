@@ -39,9 +39,10 @@
                                 <td>{{ $job->buyer_name }}</td>
                                 <td>{{ $job->value_usd }}</td>
                                 <td>{{ $job->voucher_amount }}</td>
-                                <td>{{ $job->party->name ?? '-' }}</td>
-                                <td>{{ $job->terminal->name ?? '-' }}</td>
-                                <td>{{ $job->employee->name ?? '-' }}</td>
+<td>{{ $job->party ? $job->party->party_name : '-' }}</td>
+<td>{{ $job->terminal ? $job->terminal->terminal_name : '-' }}</td>
+<td>{{ $job->employee ? $job->employee->first_name.' '.$job->employee->last_name : '-' }}</td>
+
                                 <td>{{ $job->job_no }}</td>
                                 <td>{{ $job->job_type }}</td>
                                 <td>
